@@ -1,28 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import SearchScreen from './src/screens/SearchScreen'
+import { Screen } from './src/assets/variables'
+import { NavigationContainer } from '@react-navigation/native'
+import HotelListScreen from './src/screens/HotelListScreen'
+import HotelDetailsScreen from './src/screens/HotelDetailsScreen'
+import BookingFormScreen from './src/screens/BookingFormScreen'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const App = () => {
+  const RootStack = createNativeStackNavigator()
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
+    <NavigationContainer>
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+      <RootStack.Screen name={Screen.SearchScreen} component={SearchScreen} />
+      <RootStack.Screen name={Screen.HotelListScreen} component={HotelListScreen} />
+      <RootStack.Screen name={Screen.HotelDetailsScreen} component={HotelDetailsScreen} />
+      <RootStack.Screen name={Screen.BookingFormScreen} component={BookingFormScreen} />
+      </RootStack.Navigator>
+      </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
+export default App
